@@ -141,7 +141,9 @@ var PMA_commonActions = {
             url = url.substring(0, url.indexOf('?'));
         }
         url += PMA_commonParams.getUrlQuery();
-        $('#leftframelinks a:first').attr('href',url).click();
+        var anchor = $('<a/>',{href:url});
+        $(anchor).bind('refresh',AJAX.requestHandler);
+        $(anchor).trigger('refresh');
         AJAX._callback = callback;
     }
 };
